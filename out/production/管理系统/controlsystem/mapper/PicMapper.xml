@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="controlsystem.dao.PictureDao">
+    <update id="update" parameterType="java.util.Map">
+        update t_picture set pname = #{pname},pauthor=#{pauthor},pPhone=#{pPhone},
+                             paddress=#{paddress},pfax=#{pfax},pdesc=#{pdesc}
+        where pcode=#{pcode}
+     </update>
+
+    <select id="selectPicByCondition" parameterType="java.lang.String" resultType="controlsystem.entity.T_picture">
+        select * from t_picture where pname=#{str} or pcode=#{str}
+    </select>
+
+    <insert id="add" parameterType="controlsystem.entity.T_picture">
+        insert into t_picture (pcode,pname,pauthor,pPhone,paddress,pfax,pdesc)
+            value(#{pcode},#{pname},#{pauthor},#{pPhone},#{paddress},#{pfax},#{pdesc})
+    </insert>
+
+    <delete id="delete" parameterType="controlsystem.entity.T_picture">
+        delete from t_picture where pname=#{pname} or pcode=#{pcode}
+    </delete>
+
+    <select id="AllPicture" resultType="controlsystem.entity.T_picture">
+        SELECT * FROM t_picture;
+    </select>
+
+</mapper>
